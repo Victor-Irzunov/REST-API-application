@@ -1,0 +1,44 @@
+<h1 style="font-size: 40px; font-weight: 500; font-family: 'Fraunces', serif;">Редактировать: {{prod.title}}</h1>
+
+{{#if error}}
+<p class="alert">{{error}}</p>
+{{/if}}
+
+<form action="/product/edit" method="POST" class="course-form">
+
+	<div class="input-field">
+		<input id="title" name="title" type="text" class="validate" value="{{prod.title}}" required>
+		<label for="title">Название курса</label>
+		<span class="helper-text" data-error="введите название">Helper text</span>
+	</div>
+
+	<div class="input-field">
+		<input id="price" name="price" type="number" class="validate" step="0.01" value="{{prod.price}}" required>
+		<label for="price">Цена курса</label>
+		<span class="helper-text" data-error="wrong">Helper text</span>
+	</div>
+
+	<div class="input-field">
+		<input id="img" type="text" name="img" class="validate" value="{{prod.img}}" required>
+		<label for="img">URL img</label>
+		<span class="helper-text" data-error="введите url картинки" data-success="right">Helper text</span>
+	</div>
+
+	<input type="hidden" name="id" value="{{prod.id}}">
+	<input type="hidden" name="_csrf" value="{{csrf}}">
+
+	{{#if isAdmin_admin}}
+	<button type="submit" class="btn btn-primary">Сохранить изменения</button>
+	{{/if}}
+</form>
+
+<form action="/product/remove" method="POST">
+	<input type="hidden" name="id" value="{{prod.id}}">
+	<input type="hidden" name="_csrf" value="{{csrf}}">
+	{{#if isAdmin_admin}}
+	<button class="btn red">Удалить</button>
+	{{/if}}
+</form>
+{{!-- <input type="hidden" name="_csrf" value="{{csrf}}"> {{!-- _csrf на донное название удет смотреть middleware и
+автомат --
+будет делать всёза нас ----//№60 - Добавление CSRF-защиты--}}
