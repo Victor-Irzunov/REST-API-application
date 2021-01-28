@@ -38,6 +38,7 @@ router.get('/', async (req, res) => {
 				isHome: true,
 				userId: req.user ? req.user._id.toString() : null,
 				products,
+				user: req.user.toObject()
 			})
 		}
 	}
