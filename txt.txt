@@ -1,0 +1,21 @@
+heroku.com
+heroku cli
+
+
+GIT:
+
+heroku -v
+heroku login
+heroku create
+git init
+git add .
+git commit -am "myproject_valid"
+heroku git:remote -a quiet-gorge-08860
+git push heroku master
+
+
+error:
+heroku log
+0.0.0.0/0 - разрешить доступ отовсюду
+
+Overview (в heroku) -> More ->restart

@@ -26,16 +26,16 @@ router.get('/', auth, async (req, res) => {
 
 })
 
-let connections = []
+// let connections = []
 
-io.on('conections', function (socket) {
-	console.log(chalk.red('успешное соединение'))
-	connections.push(socket)
-	socket.on('disconnect', (data) => {
-		connections.splice(connections.indexOf(socket), 1)
-		console.log(chalk.red('отключение'))
-	})
-})
+// io.on('conections', function (socket) {
+// 	console.log(chalk.red('успешное соединение'))
+// 	connections.push(socket)
+// 	socket.on('disconnect', (data) => {
+// 		connections.splice(connections.indexOf(socket), 1)
+// 		console.log(chalk.red('отключение'))
+// 	})
+// })
 
 
 
