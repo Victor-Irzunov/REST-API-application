@@ -6,20 +6,36 @@ const crypto = require('crypto')                             //№66 - Восс�
 const { validationResult } = require('express-validator')               //№71. Базовая валидация
 const keys = require('../keys')
 const nodemailer = require('nodemailer')                  //https://webdraftt.com/tutorial/nodejs/email
+const smtp = require('nodemailer-smtp-transport'); //!
 const regEmail = require('../emails/registration')
+// const mailjet = require('../mailjet-project/email')//!
 const chalk = require('chalk')
 const resEmail = require('../emails/reset')
 const { registerValidators } = require('../utils/validators_registr')
 const { loginValidators } = require('../utils/validators_login')
-
 //++почта
-let transporter = nodemailer.createTransport({
-	service: keys.SERVICE,
-	auth: {
-		user: keys.MY_EMAIL,
-		pass: keys.MY_PASSWORD,
-	}
-});
+
+// let transporter = nodemailer.createTransport({
+// 	service: keys.SERVICE,`
+// 	auth: {
+// 		user: keys.MY_EMAIL,
+// 		pass: keys.MY_PASSWORD,
+// 	}
+// });
+//--------------------------------------------------
+// async function mailjet() {
+const transporter = nodemailer.createTransport(
+	smtp({
+		host: 'in-v3.mailjet.com',
+		port: 2525,
+		auth: {
+			user: '75e1a27294eca25b7b6c3ee22b3b3a50',
+			pass: 'ad43377fdeb23350553200410d80e196',
+		},
+	})
+);
+// }
+//--------------------------------------------------------------------------
 
 
 //++ Вход 
@@ -89,15 +105,11 @@ router.post('/register', registerValidators, async (req, res) => {
 	try {
 		const { email, password, name } = req.body
 
-
 		const errors = validationResult(req)
 		if (!errors.isEmpty()) {
 			req.flash('registerError', errors.array()[0].msg)
 			return res.status(422).redirect('/auth/login#register')
 		}
-
-
-
 		const hashPassword = await bcrypt.hash(password, 10)                  //№59 - Шифрование пароля  //.hash( возвращает промис он асинхроный  // 10) сильнее шифрование
 		const user = new User({															//новый класс 
 			email, name, password: hashPassword, cart: { items: [] }                //тк клч и значение совподают то оставл так   //№57 - Регистрация пользователя  //: hashPassword  №59 - Шифрование пароля
@@ -105,13 +117,16 @@ router.post('/register', registerValidators, async (req, res) => {
 		await user.save()                                               //ждем когда пользователь сохраниться   //№57 - Регистрация пользователя
 		res.redirect('/auth/login#login')                               //когда польз уже создан   //№57 - Регистрация пользователя
 
-		//**email */
-		let result = await transporter.sendMail(regEmail(email));
-		console.log(result);
+		// //**email */
+		// let result = await transporter.sendMail(regEmail(email))
+		// console.log(chalk.blue('result: ', result))
+		//---------------------------------------------------
+		const json = await transporter.sendMail(regEmail(email));
+		//---------------------------------------------------------------------------------------------------------------------------------------------
 
 	}
 	catch (e) {
-		console.log('Витя это ошибка e: ', e, '````````````auth.js router`````люблю ошибки``````')
+		console.log('Витя это ошибка e: ', e, '````````post````auth.js router`````люблю ошибки``````')
 	}
 })
 

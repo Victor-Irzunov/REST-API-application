@@ -19,3 +19,26 @@ heroku log
 0.0.0.0/0 - разрешить доступ отовсюду
 
 Overview (в heroku) -> More ->restart
+
+
+
+
+______________________________________________________
+=== quiet-gorge-08860 Config Vars
+ADMIN_SYSTEM:          600ea40fb8d2bd1a4cb149b6
+BASE_URL:              https://quiet-gorge-08860.herokuapp.com
+MAILGUN_API_KEY:       8441182eb377c9b4fd5269516a29615b-07bc7b05-6029a0d9
+MAILGUN_DOMAIN:        sandbox78723474b0474c70a1f713f273882146.mailgun.org
+MAILGUN_PUBLIC_KEY:    pubkey-8aa30a64c8b57d0d2248f431975568f7
+MAILGUN_SMTP_LOGIN:    postmaster@sandbox78723474b0474c70a1f713f273882146.mailgun.org
+MAILGUN_SMTP_PASSWORD: 4eede785aee7c295900ac8eaf74f584c-07bc7b05-74ca8dce
+MAILGUN_SMTP_PORT:     587
+MAILGUN_SMTP_SERVER:   smtp.mailgun.org
+MONGODB_URI:           mongodb+srv://Victor-school:uG73dLnsUETlKVzf@cluster0.6aeiv.mongodb.net/my_
+MY_EMAIL:              irzunovv@gmail.com
+MY_PASSWORD:           1qaz-2wsx
+REALEMAIL_API_KEY:     B2OP89L1X7KQZRVFNU6AH7T3045EJIGD1S908C3MY5W624
+REALEMAIL_CLIENT_ID:   9988
+SERVICE:               gmail
+SESSION_SECRET:        some secret value
+______________________________________________________________

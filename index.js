@@ -63,6 +63,7 @@ app.use(
 app.use(compression())
 app.use(userMiddleware)
 app.use(varMiddleware)
+
 app.use('/', mainRoutes)
 app.use('/add', addRoutes)
 app.use('/basket', basketRoutes)

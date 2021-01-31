@@ -6,6 +6,8 @@ module.exports = {
 	SERVICE: process.env.SERVICE,
 	BASE_URL: process.env.BASE_URL,
 	ADMIN_SYSTEM: process.env.ADMIN_SYSTEM,
+	REALEMAIL_API_KEY: process.env.REALEMAIL_API_KEY,
+	
 }
 
 
