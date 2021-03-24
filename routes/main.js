@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
 	try {
 		const products = await Product.find().populate('userId', 'email name').select('price title img')
 		let a = products.find(e => e)
+      console.log("🚀  _ file: main.js _ line 13 _ router.get _ a", a)
 
 		if (products.length < 1 && req.session.isAdmin) {
 			a = keys.ADMIN_SYSTEM
