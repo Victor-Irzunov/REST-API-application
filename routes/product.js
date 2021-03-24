@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 //++переход на страницу редактировать-edit
 router.get('/:id/edit', auth, async (req, res) => {
 
-	console.log(chalk.red('get: ++++++ product-2 (перх на стр редакт) +++++ get'))
+	console.log(chalk.red('get: ++++++ product-2 (перход на стр редакт) +++++ get'))
 
 
 	if (!req.query.allow) {
