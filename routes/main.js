@@ -5,7 +5,6 @@ const keys = require('../keys')
 const router = Router()
 
 router.get('/', async (req, res) => {
-	console.log(chalk.blueBright('get: +++++ main +++++ get'))
 
 	try {
 		const products = await Product.find().populate('userId', 'email name').select('price title img')
